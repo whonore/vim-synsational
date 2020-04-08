@@ -5,6 +5,10 @@ let g:loaded_synsational = 1
 
 function! s:synsation() abort
   let [l:syn, l:hl] = synsational#Synstack(line('.'), col('.'))
+  if l:syn == []
+    return
+  end
+
   if has('popupwin') && get(g:, 'synsational_mode', '') ==# 'popup'
     call popup_atcursor(l:syn, {'highlight': l:hl})
   else
