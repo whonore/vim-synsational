@@ -29,5 +29,6 @@ endfunction
 
 function! synsational#Synstack(line, col) abort
   let l:syns = map(synstack(a:line, a:col), 's:getSyn(v:val)')
-  return s:aligns(l:syns, ' | ')
+  let l:hl = get(l:syns, -1, ['', ''])[1]
+  return [s:aligns(l:syns, ' | '), l:hl]
 endfunction

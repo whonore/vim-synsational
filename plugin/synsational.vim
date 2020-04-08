@@ -4,11 +4,12 @@ endif
 let g:loaded_synsational = 1
 
 function! s:synsation() abort
-  let l:syn = synsational#Synstack(line('.'), col('.'))
+  let [l:syn, l:hl] = synsational#Synstack(line('.'), col('.'))
   if has('popupwin') && get(g:, 'synsational_mode', '') ==# 'popup'
-    call popup_atcursor(l:syn, {})
+    call popup_atcursor(l:syn, {'highlight': l:hl})
   else
-    echo join(l:syn, "\n")
+    execute 'echohl ' . l:hl
+    echo join(l:syn, "\n") | echohl None
   endif
 endfunction
 
