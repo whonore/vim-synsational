@@ -10,7 +10,7 @@ function! s:synsation() abort
   end
 
   if has('popupwin') && get(g:, 'synsational_mode', '') ==# 'popup'
-    call popup_atcursor(l:syn, {'highlight': l:hl})
+    call popup_atcursor(l:syn, {'highlight': l:hl, 'border': []})
   else
     execute 'echohl ' . l:hl
     echo join(l:syn, "\n") | echohl None
